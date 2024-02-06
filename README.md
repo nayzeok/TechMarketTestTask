@@ -8,10 +8,7 @@ git clone https://github.com/nayzeok/TechMarketTestTask
 ```sh
 composer install
 ```
-##### Initialize Yii
-```sh
-docker exec -it prod-app php ../app/init
-```
+
 ##### Configure Yii
 in `app/common/config/main-local.php` file change db host and name
 
