@@ -3,13 +3,14 @@ use app\models\Category;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $categories Category[] */
 
 $this->title = 'Категории';
 $this->registerJs("
     $(document).on('click', '.expand-category', function(e) {
         e.preventDefault();
-        $(this).siblings('ul').slideToggle();
-        $(this).text($(this).text() == '+' ? '-' : '+');
+        $(this).next('ul').slideToggle(); // Переключаем видимость следующего элемента ul
+        $(this).text($(this).text() == '+' ? '-' : '+'); // Меняем текст на '-' или '+'
     });
 ", yii\web\View::POS_READY);
 
@@ -59,8 +60,7 @@ $this->registerCss("
 ?>
 <div class="site-index">
     <h1><?= Html::encode($this->title) ?></h1>
-
     <div class="body-content">
-        <?php Category::showCategories(); ?>
+        <?= $this->render('_categoryList', ['categories' => $categories]) ?>
     </div>
 </div>
