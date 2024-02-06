@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use app\models\Category;
 
 use Yii;
 use yii\filters\AccessControl;
@@ -61,8 +62,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $categories = Category::find()
+            ->orderBy('level, parent_id')
+            ->all();
+
+        return $this->render('index', [
+            'categories' => $categories,
+        ]);
     }
+
 
     /**
      * Login action.
