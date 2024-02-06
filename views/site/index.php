@@ -1,53 +1,43 @@
 <?php
+use yii\helpers\Html;
 
-/** @var yii\web\View $this */
+/* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Welcome!';
+$this->registerCss("
+    .site-index h1 {
+        text-transform: uppercase;
+        text-align: center;
+        color: #555;
+        transition: all 0.3s ease;
+    }
+    .site-index h1:hover {
+        color: #f06d06;
+        letter-spacing: 3px;
+    }
+    .lead {
+        font-size: 1.5em;
+        color: #777;
+        font-style: italic;
+    }
+    .body-content p {
+        background: #f9f9f9;
+        padding: 15px;
+        border-left: 5px solid #ccc;
+    }
+    .body-content p:hover {
+        border-left: 5px solid #f06d06;
+        background: #e9e9e9;
+    }
+");
 ?>
 <div class="site-index">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    <p class="lead">Добро пожаловать в систему управления категориями!</p>
 
     <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
+        <p>Этот раздел предназначен для ознакомления с функциями управления категориями.</p>
+        <p>Используйте панель навигации для перехода к разделу 'Категории', где вы найдёте инструменты для просмотра категорий.</p>
     </div>
 </div>
