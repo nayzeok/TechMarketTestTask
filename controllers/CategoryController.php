@@ -9,16 +9,31 @@ use app\models\Task;
 
 class CategoryController extends Controller
 {
+    /**
+     * Отображение списка всех категорий.
+     *
+     * @return string Отрендеренный вид для отображения списка категорий.
+     */
     public function actionIndex()
     {
-        $categories = Category::find()->all();
+        $categories = Category::find()
+            ->where(['parent_id' => null])
+            ->all();
 
         return $this->render('index', [
             'categories' => $categories,
         ]);
     }
 
-    public function actionView($id)
+
+    /**
+     * Отображение детальной информации о конкретной категории.
+     *
+     * @param int $id Идентификатор категории.
+     * @return string Отрендеренный вид для отображения детальной информации категории.
+     * @throws NotFoundHttpException Если категория не найдена.
+     */
+    public function actionView($id): string
     {
         $category = Category::findOne($id);
 

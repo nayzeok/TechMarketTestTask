@@ -50,8 +50,7 @@ class Category extends ActiveRecord
     }
 
     /**
-     * Gets query for [[Parent]].
-     *
+     * Возвращает родительскую категорию.
      * @return \yii\db\ActiveQuery
      */
     public function getParent()
@@ -60,8 +59,7 @@ class Category extends ActiveRecord
     }
 
     /**
-     * Gets query for [[Children]].
-     *
+     * Возвращает дочерние категории.
      * @return \yii\db\ActiveQuery
      */
     public function getChildren()
@@ -74,31 +72,29 @@ class Category extends ActiveRecord
         return Url::to(['/category/view', 'id' => $this->id]);
     }
 
+
     public static function showCategories($parent_id = null, $isChild = false)
     {
         $categories = self::find()
             ->where(['parent_id' => $parent_id])
-            ->orderBy('name')
+            ->orderBy('order, name') // сортировка сначала по порядку, затем по имени
             ->all();
 
         if (!empty($categories)) {
             $style = $isChild ? " style='display:none;'" : "";
-            echo "<ul$style>";
+            echo "<ul class='category-list'$style>";
             foreach ($categories as $category) {
-                echo "<li>";
+                echo "<li id='category_{$category->id}'>";
                 echo Html::a(Html::encode($category->name), $category->getUrl(), ['class' => 'category-link']);
-                // Проверяем, есть ли у категории дети
                 if ($category->getChildren()->count() > 0) {
-                    echo Html::a("+", '#', ['class' => 'expand-category']); // Добавляем ссылку для раскрытия подкатегорий
-                    self::showCategories($category->id, true); // Рекурсивный вызов для подкатегорий, передаем флаг, что это дочерние элементы
+                    echo Html::a("+", '#', ['class' => 'expand-category']);
+                    self::showCategories($category->id, true);
                 }
                 echo "</li>";
             }
             echo "</ul>";
         }
     }
-
-
 
     /**
      * Возвращает строку пути для текущей категории.
